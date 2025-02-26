@@ -94,13 +94,13 @@ ReactDOM.render(
               <h2 className="title is-3 publication-title">for Multimodal Large Language Models</h2>
             <div className="is-4 publication-authors">
               <span className="is-4 publication-title-Cinzel">
-                <a href="">Xianfu Cheng</a><sup>1</sup>,</span>
+                <a href="">Xianfu Cheng</a><sup>1*</sup>,</span>
               <span className="is-4 publication-title-Cinzel">
-                <a href="">Wei Zhang</a><sup>1</sup>,</span>
+                <a href="">Wei Zhang</a><sup>1*</sup>,</span>
               <span className="is-4 publication-title-Cinzel">
-                <a href="">Shiwei Zhang</a><sup>2</sup>,</span>
+                <a href="">Shiwei Zhang</a><sup>2*</sup>,</span>
               <span className="is-4 publication-title-Cinzel">
-                <a href="">Jian Yang</a><sup></sup>1</span>
+                <a href="">Jian Yang</a><sup>1*†</sup>,</span>
                 <br></br>
               <span className="is-4 publication-title-Cinzel">
                 <a href="">Xiangyuan Guan</a><sup>1</sup>,</span>
@@ -128,7 +128,7 @@ ReactDOM.render(
               <span className="is-4 publication-title-Cinzel">
                 <a href="">Yunhong Lu</a><sup>5</sup>,</span>
               <span className="is-4 publication-title-Cinzel">
-                <a href="">Tongliang Li</a><sup>1</sup>,</span>
+                <a href="">Tongliang Li</a><sup>1†</sup>,</span>
               <span className="is-4 publication-title-Cinzel">
                 <a href="">Wenhao Huang</a><sup>3</sup>,</span>
               <span className="is-4 publication-title-Cinzel">
