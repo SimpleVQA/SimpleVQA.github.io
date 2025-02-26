@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="CodeArena" />
+  <meta name="keywords" content="Multilingual, Code, Large Language Models, LLM, Code LLM, Evaluation, Benchmark" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>
+    SimpleVQA
+  </title>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Great+Primer:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet"></link>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./css/bulma.min.css" />
+  <link rel="stylesheet" href="./css/bulma-carousel.min.css" />
+  <link rel="stylesheet" href="./css/bulma-slider.min.css" />
+  <link rel="stylesheet" href="./css/fontawesome.all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="icon" href="./images/favicon.svg" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./js/fontawesome.all.min.js"></script>
+  <script src="./js/bulma-carousel.min.js"></script>
+  <script src="./js/bulma-slider.min.js"></script>
+  <script src="./js/index.js"></script>
+
+  <style>
+    .rounded-box {
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            width: 800px;
+            text-align: center;
+            background-color: #fefaf5;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+    /* 应用 Cinzel 字体到标题 */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cinzel', serif;
+    }
+
+    /* 应用 IM Fell Great Primer 字体到正文 */
+    body, p, span, div {
+      font-family: 'IM Fell Great Primer', serif;
+    }
+
+    body {
+      background-color: #fdf8f0; /* 羊皮纸背景色 */
+    }
+
+    .spacer {
+      margin-left: 4px; /* 或者你想要的任何间距值 */
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-3 publication-title">
+              📷SimpleVQA: Multimodal Factuality Evaluation for Multimodal Large Language Models
+            </h1>
+        <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="">Xianfu Cheng</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="">Wei Zhang</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="">Shiwei Zhang</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="">Jian Yang</a><sup></sup>1</span>
+                <br>
+              <span class="author-block">
+                <a href="">Xiangyuan Guan</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="">Xianjie Wu</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="">Xiang Li</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="">Ge Zhang</a><sup>3</sup>,</span>
+              <span class="author-block">
+                <a href="">Jiaheng Liu</a><sup>3</sup>,</span>
+              <span class="author-block">
+                <a href="">Yuying Mai</a><sup>4</sup>,</span>
+              <span class="author-block">
+                <a href="">Yutao Zeng</a><sup>1</sup>,</span>
+                
+              <span class="author-block">
+                <a href="">Zhoufutu Wen</a><sup>3</sup>,</span>
+                <br>
+              <span class="author-block">
+                <a href="">Ke Jin</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="">Baorui Wang</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="">Weixiao Zhou</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="">Yunhong Lu</a><sup>5</sup>,</span>
+              <span class="author-block">
+                <a href="">Tongliang Li</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="">Wenhao Huang</a><sup>3</sup>,</span>
+              <span class="author-block">
+                <a href="">Zhoujun Li</a><sup>1,6</sup></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Beihang University;</span>
+              <span class="author-block"><sup>2</sup>Baidu Inc., China;</span>
+              <span class="author-block"><sup>3</sup>M-A-P;</span>
+              <br>
+              <span class="author-block"><sup>4</sup>Beijing Jiaotong University;</span>
+              <span class="author-block"><sup>5</sup>Yantai University;</span>
+              <span class="author-block"><sup>6</sup>Shenzhen Intelligent Strong Technology Co.,Ltd.</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2502.13059" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="spacer"></span> <!-- 增加间距 -->
+                <span class="link-block">
+                  <a href="https://github.com/SimpleVQA/SimpleVQA"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code & Evaluation Data</span>
+                  </a>
+                </span>
+                
+                <span class="spacer"></span> <!-- 增加间距 -->
+                <!-- Leaderboard Link. -->
+                <span class="link-block">
+                  <a href="leaderboard.html" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fa fa-trophy"></i>
+                    </span>
+                    <span>Leaderboard</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified is-3">
+            <p>
+              <!-- <span class="dnerf">codearena</span>  -->
+              The increasing application of multi-modal large language models (MLLMs) across various sectors has spotlighted the essence of their output reliability and accuracy, particularly their
+ability to produce content grounded in factual information (e.g. common and domain-specific knowledge). In this work, we introduce SimpleVQA, the first comprehensive multi-modal benchmark to evaluate the factuality ability of MLLMs to answer natural language short ques-
+tions. SimpleVQA is characterized by six key features: it covers multiple tasks and multiple scenarios, ensures high quality and challenging
+queries, maintains static and timeless reference answers, and is straightforward to evaluate. Our approach involves categorizing visual question-answering items into 9 different tasks around objective events or common knowledge and situating these within 9 topics. Rigorous quality
+control processes are implemented to guarantee high-quality, concise, and clear answers, facilitating evaluation with minimal variance via an LLM-as-a-judge scoring system. Using
+SimpleVQA, we perform a comprehensive assessment of leading MLLMs, delving into their image comprehension and text generation abilities by identifying and analyzing error cases.
+            </p>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Introduction</h2>
+          <div class="content has-text-justified is-3">
+            <p>
+              A significant challenge in large language models (LLMs) is ensuring that LLMs (AI@Meta, 2024;OpenAI, 2023) generate factually accurate and evidence-based responses. Current state-of-the-art LLMs often produce outputs that are misleading or unsupported by evidence phenomenon known as “hallucinations” (Tonmoy et al., 2024; Cheng et al.,2023; Zhang et al., 2023). This issue of generating incorrect or unsubstantiated information remains a major barrier to the broader adoption and reliability of general-purpose AI technologies.
+            </p>
+            <div class="columns is-centered">
+              <img src="./images/intro.png" alt="Code Generation Live Evaluation" class="teaser-image" width="60%"
+              height="60%" class="center" />
+            </div>
+            <p>
+              OpenAI proposes SimpleQA (Wei et al.) to measure factuality simple and reliable with nearly 4K concise and fact-seeking questions. Further, Chinese SimpleQA (He et al., 2024b) comprised of 3K Chinese questions spanning 6 major topics is proposed to target the Chinese language. However, the SimpleQA benchmark and Chinese SimpleQA benchmark mainly evaluate the model capabilities of text modality, ignoring wider real-world scenarios (e.g. vision modality). For the vision modality, the research progress of the multi-modal large language models (MLLMs) is still hindered by the “hallucinations” introduced by the given images.Therefore, The community of MLLMs has an urgent need for how to measure the simple and reliable factuality introduced by the image
+            </p>
+            
+            <p>
+              To address this limitation, we develop the SimpleVQA benchmark, where we define the factual question answering capability of the visual language model. For the proposed factual VQA, we collect 2,025 high-quality question-answer pairs
+covering 9 different topics across 9 different application tasks. As a factual benchmark for a short answer, SimpleVQA has the following advantages:(1) English and Chinese: SimpleVQA provides general knowledge visual Q&A in both English
+and Chinese backgrounds, and comprehensively assesses the fact-generating capacity of MLLMs in Chinese and English communities. (2) Multi-task division: We divide the SimpleVQA assessment set into 16 different forms of VQA tasks according to the collected questions and different needs
+of pictures, and summarized SimpleVQA into 4 forms of Q&A according to the complexity of images and the amount of information of question text. (3) Diversified scenarios: SimpleVQA covers 9 domains (Literature, education & sports, Euro-American History & Culture, Contemporary Society, Engineering, Technology & Application, Film,
+Television & Media, Natural Science, Art, Chinese History & Culture, and Life), and 9 tasks (Logic & Science, Object Identification Recognition, Time & Event, Person & Emotion, Location & Building,Text Processing, Quantity & Position Relationship,
+Art & Culture, and Object Attributes Recognition). (4) High quality: We implement a comprehensive and rigorous quality control process to ensure the quality of questions and the accuracy of answers at SimpleVQA. (5) Challenge: simpleVQA focuses on factual questions that mainstream MLLMs cannot answer accurately, and cannot trace the cause
+of errors through the model itself. (6) Static answers: Following SimpleQA’s factual definition, all the standard answers provided in our benchmark don’t change over time. (7) Easy to evaluate: SimpleQA’s short answers make it possible to use existing LLMs (such as OpenAI GPT-4o) to run a judge program to quickly determine right or wrong and get an overall accuracy rate.
+            </p>
+            <p>
+              We systematically evaluate 18 MLLMs on SimpleVQA and create a dynamic leaderboard to show results. Further, a series of probing experiments are performed to explore the effect of the key factors for SimpleVQA. We classify the capabilities possessed by MLLMs for factual questions into two aspects, picture comprehension and internalized knowledge capabilities: (1) picture comprehension refers to the ability of the model to identify the subject of the question being asked in the question; and (2) internalized knowledge capabilities test whether the model has already mastered the relevant knowledge of the subject of the question being asked, and thus is able to answer the relevant question correctly after identifying that subject. Based on this definition, we added a retrospective experiment to the basic assessment to help determine whether the badcase came from a lack of picture comprehension ability or a lack of internalized knowledge
+ability by generating and labeling atomic questions (each atomic question corresponds to an atomic fact) for each VQA example.
+            </p>
+
+            <p>
+              The remarkable findings from SimpleVQA are summarized as: (1) The factual accuracy of most evaluation models in the field of visual question-answering is insufficient. (2) The training data of MLLMs contains knowledge errors and they are overconfident in what they generate. (3) Image content understanding is still a major challenge for MLLMs to achieve improved capabilities. (4) Supervised fine-tuning (SFT) for image content understanding would be beneficial to improve the performance of factual VQA. (5) The ability of MLLMs to internalize massive world knowledge still needs to be improved, and overcoming illusions remains a great challenge for large language models.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">SimpleVQA</h2>
+
+          <div class="content has-text-justified is-3">
+            <p>
+              <span class="dnerf">Overview.</span>
+            </p>
+          </div>
+          <p>
+            The SimpleVQA benchmark consists of 2,025 samples spanning 9 core tasks and 9 primary domains,
+with each question-image pair categorized into relevant subcategories, enabling a comprehensive evaluation of MLLMs across diverse knowledge areas.
+The dataset 9 tasks, including covers Logic & Science (LS), Object Identification Recognition (OIR),
+Time & Event (TE), Person & Emotion (PE), Location & Building (LB), Text Processing (TP), Quantity & Position Relationship (QPR), Art & Culture
+(AC), and Object Attributes Recognition (OAR).
+To ensure broad topic coverage, SampleVQA is structured around 9 key domains: Literature, education & sports (LES), Euro-American History &
+Culture (EHC), Contemporary Society (CS), Engineering, Technology & Application (ETA), Film, Television & Media (FTM), Natural Science (NS),
+Art (AR), Chinese History & Culture (CHC), and Life (LI). 
+          </p>
+          <div class="columns is-centered">
+            <img src="./images/table1.png" alt="Code Generation Live Evaluation" class="teaser-image" width="90%"
+            height="90%" class="center" />
+          </div>
+          <p>
+As shown in Table 1, SampleVQA differs from
+existing MLLM benchmarks by focusing on factual knowledge boundaries instead of general vision language understanding. Politically sensitive and
+ideological content is excluded to maintain neutrality and avoid controversy. Designed for efficiency,
+the dataset features concise questions and standardized answers, reducing complexity in model evaluation. All samples follow a short-answer Q&A format, enabling simple and objective assessment through direct answer matching. These refinements ensure SampleVQA serves as a robust benchmark for evaluating MLLMs’ factual reasoning abilities.
+          </p>
+          <div class="content has-text-justified is-3">
+            <p>
+              <span class="dnerf">Dataset Criteria.</span>
+            </p>
+          </div>
+          <p>
+            SampleVQA adheres to strict criteria ensuring objectivity, temporal stability, and verifiability in its
+            questions, images, and answers. The following guidelines define these standards.
+            <span class="dnerf">Question Guidelines.</span>
+            Clear and Unique Answers: Questions must have a single, undisputed answer. They should precisely define scope (e.g., "Which city?" instead of "Which location?") and
+            specify time references (e.g., "Which year?" rather than "When?"). Evidence-Based: Each question must be supported by verifiable sources. Manually annotated questions include reference links,
+            while automatically generated ones undergo independent validation by two AI trainers. Challenging for MLLMs: Questions are tested on GPT-4o, GPT-4o-mini, doubao-vision-pro, and ERNIE-VL. Only
+            those that at least one model answers incorrectly are retained; others are revised. Answerable by August 2024: All questions must be answerable based on knowledge available before September 1,
+            2024, ensuring a fair evaluation across models with similar knowledge cutoffs.
+            <span class="dnerf">Visual Guidelines.</span>
+            No Direct Textual Clues: Images must not contain text revealing the answer. Authenticity: Only real, unaltered images are allowed to prevent factual distortion. Supports Question Reasoning: Each image must provide sufficient
+            context for answering. Manually labeled samples undergo multi-annotator verification. Fixed Before August 2024: Image content must be valid and confirmable before August 2024.
+            <span class="dnerf">Answer Guidelines.</span>
+            Temporal Stability: Answers must remain unchanged and unaffected by new information. Time-sensitive topics (e.g.,sports, media) should specify a timeframe rather than a general answer that may change. Sufficiently Challenging: Answers are tested against four high precision MLLMs. If all models respond correctly, 
+            the question is revised to increase difficulty. Fully Objective and Evaluable: Answers must be precise, verifiable, and free from subjective interpretation.Unambiguous: Each answer must have a single, clear meaning to prevent misinterpretation.
+          </p>
+          <div class="content has-text-justified is-3">
+            <p>
+              <span class="dnerf">Data Collection and Processing.</span>
+            </p>
+          </div>
+          <div class="columns is-centered">
+            <img src="./images/data_construct.png" alt="Code Generation Live Evaluation" class="teaser-image" width="90%"
+            height="90%" class="center" />
+          </div>
+          <p>
+            As shown in Figure 2, the construction of SimpleVQA follows a structured five-step process:
+            <span class="dnerf">Step 1: Seed Example Collection. </span>
+            SimpleVQA’s seed examples are sourced from two primary channels. First, we filter images and Q&A pairs from publicly available VQA datasets that align with
+factual knowledge criteria. We select MMVet (English), MME (English), Dynamath (English), MMbench_CN (Chinese), and CCBench (Chinese) due to their recent construction (post-2023) and their
+relevance to real-world applications. Second, we collect images and relevant factual knowledge from
+search engines (e.g., Google, Baidu, Wikipedia), with expert annotators generating corresponding questions and answers. These data focus on enti-
+ties and events across multiple domains, ensuring answers are objective, fact-based, and centered on entity recognition or attribute extraction.
+            <span class="dnerf">Step 2: Data Enhancement and QA Pair Generation. </span>
+            Once sufficient seed examples are gathered, we employ GPT-4o (OpenAI, 2023) to refine the data and generate Q&A pairs for factual categories. For multiple-choice questions (MCQs)
+from sources like MMbench_CN and CCBench, to ensure answer uniqueness, we use LLMs to rephrase the original question and introduce qualifiers that precisely align with the correct response.
+For MME, we extract the answer entity and rewrite the question based on its attributes, ensuring a one-to-one correspondence. Datasets like MMVet,
+Dynamath, and CCBench, which contain discrepancies from factual Q&A formats (e.g., incorrect
+answer options, image descriptions, or MCQ distractors), are processed using GPT-4o to align the content with factual reasoning. These refinements produce the initial version of SimpleVQA.
+            <span class="dnerf">Step 3: LLM-Based Quality Verification. </span>
+            Once sufficient seed examples are gathered, we employ GPT-4o (OpenAI, 2023) to refine the data and generate Q&A pairs for factual categories. For multiple-choice questions (MCQs)
+from sources like MMbench_CN and CCBench, to ensure answer uniqueness, we use LLMs to rephrase the original question and introduce qualifiers that precisely align with the correct response.
+For MME, we extract the answer entity and rewrite the question based on its attributes, ensuring a one-to-one correspondence. Datasets like MMVet,
+Dynamath, and CCBench, which contain discrepancies from factual Q&A formats (e.g., incorrect answer options, image descriptions, or MCQ distractors), are processed using GPT-4o to align the
+content with factual reasoning. These refinements produce the initial version of SimpleVQA.
+            <span class="dnerf">Step 4: Difficulty Screening.</span>
+            To maximize the dataset’s utility in model evaluation, we filter out overly simple Q&A pairs. We assess responses
+from four mainstream MLLMs (GPT-4o, GPT-4o-mini, Doubao-vision-pro, and ERNIE-VL). Any question correctly answered by all four models is deemed too simple and excluded from the dataset,
+thereby maintaining a challenging benchmark.
+            <span class="dnerf">Step 5: Extracting Atomic Facts.</span>
+            To analyze visual comprehension and language alignment in MLLMs more precisely, we generate atomic questions from each SimpleVQA entry. An atomic fact represents the most fundamental, indivisible
+attribute or characteristic of an object. For instance, given the question "In what year was the person in the image born?", the corresponding atomic question is "Who is the person in the image?". MLLMs
+generate candidate answers, which are then reviewed and refined by professional annotators to ensure accuracy.
+
+          </p>
+          <div class="content has-text-justified is-3">
+            <p>
+              <span class="dnerf">Human Annotation & Quality Control.</span>
+            </p>
+          </div>
+          <p>
+            To ensure dataset quality, we implement a rigorous manual validation process following automated data collection. All the collaborators in this paper
+participated in the necessary data annotation, and we also selected three domain experts from the
+collaborators. Each question is independently reviewed by two expert annotators to verify factual accuracy. If either annotator finds a question unsuitable, it is discarded. Annotators fact-check answers
+using authoritative sources such as Wikipedia and Baidu Encyclopedia, providing at least two sup-
+porting URLs. If their answers differ, a third expert conducts a final review to ensure consistency
+and correctness. Only Q&A pairs that fully align with both human evaluations and LLM-generated
+responses are retained.
+A difficulty assessment further refines the dataset. We begin with 8,360 Q&A pairs, filtering
+out 22% of image-based samples that lack challenge or fail to meet predefined criteria. 1,108
+pairs are removed through multi-model testing to ensure that questions pose a meaningful challenge to MLLMs. To maintain category balance,
+we carefully select 200 high-difficulty mathematical Q&As from 5,000 Dynamath samples, avoid-
+ing an overrepresentation of simpler factual questions. Through multiple validation rounds, we re-
+tain 2,025 high-precision Q&A pairs, accounting
+for 24% of the original dataset. This process ensures factual integrity, topic diversity, and appropriate difficulty levels, making SampleVQA a robust
+benchmark for evaluating MLLMs’ reasoning and knowledge boundaries.
+          </p>
+          <div class="content has-text-justified is-3">
+            <p>
+              <span class="dnerf">Dataset Statistics.</span>
+            </p>
+          </div>
+          <div class="columns is-centered">
+            <img src="./images/table2.png" alt="Code Generation Live Evaluation" class="teaser-image" width="90%"
+            height="90%" class="center" />
+          </div>
+          <p>
+            As shown in Table 1, our SimpleVQA benchmark consists of 2,025 samples across 9 major tasks, 9 major domains, and 244 image types. Examples of
+            each category can be found in Figure 2. This design
+            facilitates a comprehensive assessment of MLLMs
+            across different domains. Regarding the distribution of topics and image types in SimpleVQA,
+            nine main topics are defined and subcategories
+            are assigned based on each topic. In Table 1, we
+            also compare SimpleVQA with several mainstream
+            MLLMs’ evaluation benchmarks, which suggests
+            that SimpleVQA is the first MLLMs’ benchmark
+            that focuses on the evaluation of knowledge boundaries in factual categories. We excluded ideological
+            and politically relevant data from the dataset to prevent social controversies and negative impacts. In
+            addition, we implemented several optimizations
+            to improve the efficiency of the evaluation. The
+            dataset features concise questions and standardized
+            answers, minimizing the input and output markers
+            required for GPT assessment. In addition, all examples are in short-answer question-and-answer
+            (QA) format, and they can be assessed by simple
+            matching.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Experiments</h2>
+          
+          <div class="content has-text-justified is-3">
+            <p>
+              <span class="dnerf">Setup.</span>
+            </p>
+          </div>
+          <p>
+            We maintain a consistent prompt format across all experiments. The temperature and sampling parameters adhere to each LLM’s official configuration or
+default settings and GPT-4o serves as the primary model for evaluation and data construction.
+          </p>
+
+          <div class="content has-text-justified is-3">
+            <p>
+              <span class="dnerf">Baseline Models.</span>
+            </p>
+          </div>
+          <p>
+            We evaluate 18 models in total, comprising 8 closed-source and 10 open-source models, providing a diverse evaluation of model capabilities across different architectures and training
+paradigms. The closed-source models include GPT-4o, GPT-4o-mini, Doubao-pro-128k, Doubao-pro-32k, Gemini-2.0-flash, Claude-3.5-Sonnet, Qwen-Max, ERNIE-VL. The open-source models cover a
+wide range of frameworks, including InternLM2.5,Qwen2.5, Qwen2, Janus-pro-7B.
+          </p>
+          
+          <div class="content has-text-justified is-3">
+            <p>
+              <span class="dnerf">Evaluation Metrics.</span>
+            </p>
+          </div>
+          <p>
+            <div class="columns is-centered">
+              <img src="./images/confidence.png" alt="Code Generation Live Evaluation" class="teaser-image" width="60%"
+              height="60%" class="center" />
+            </div>
+            The evaluation of the SampleVQA benchmark employs a set of rigorous metrics designed to assess
+the accuracy, reliability, and consistency of the model’s predictions. These metrics include: 
+<span class="dnerf">(1) Correct (CO)</span> evaluates whether the predicted answer matches the reference answer exactly without
+any contradiction. <span class="dnerf">(2) Not Attempted (NA)</span> identifies cases where the model does not attempt to
+answer, ensuring no contradictions are present. <span class="dnerf">(3)Incorrect (IN)</span> flags instances where the predicted answer contradicts the reference answer, even if
+resolved. <span class="dnerf">(4) Correct Given Attempted (CGA)</span> measures the proportion of correct answers among those attempted by the model, reflecting its performance when engaged. <span class="dnerf">(5) F-score</span> computes the
+harmonic mean between "Correct" and "Correct Given Attempted," providing a balanced evaluation that combines accuracy and attempt success.
+          </p>
+          
+          <div class="content has-text-justified is-3">
+            <p>
+              <span class="dnerf">Main Results.</span>
+            </p>
+          </div>
+          <p>
+            <span class="dnerf">Results on Different Tasks.</span>Table 4 presents the
+            performance of various closed-source and open-source vision-language models on a benchmark,
+            highlighting their F-scores across different tasks
+            in Chinese and English. Among the closed-source
+            models, Gemini-2.0-flash and Doubao-vision-pro-128k show strong performance, particularly in tasks
+            like PE and TP. In contrast, models like Claude-3.5-Sonnet and Qwen-Max exhibit moderate perfor-
+mance. Open-source models, such as InternVL2.5-78B-MPO and Qwen2.5-VL-72B-Instruct, demon-strate competitive results, though slightly lower
+than the top closed-source models, with F-scores
+mostly in the 40s and 50s. Notably, models like
+InternVL2-Llama3-76B and DeepSeek-VL2-27B
+show weaker performance, with F-scores in the 30s,
+indicating a significant gap between the highest and
+lowest-performing models. Overall, closed-source
+models tend to outperform open-source ones, particularly in specialized tasks, though some open-source models remain competitive in specific categories.
+            
+          </p>
+          
+          <!-- <div class="columns is-centered is-variable">
+            <div class="column">
+              <img 
+                src="./images/radar_1.png" 
+                alt="Code Generation Live Evaluation" 
+                class="teaser-image center" 
+                style="width: 100%; height: auto;"
+              >
+            </div>
+            <div class="column">
+              <img 
+                src="./images/radar_2.png" 
+                alt="Code Generation Live Evaluation" 
+                class="teaser-image center" 
+                style="width: 100%; height: auto;"
+              >
+            </div>
+          </div> -->
+          <div class="columns is-centered">
+            <img src="./images/radar.png" alt="Code Generation Live Evaluation" class="teaser-image" width="100%"
+            height="100%" class="center" />
+          </div>
+          
+          <div class="content has-text-justified is-3">
+            <p>
+              <span class="dnerf">Results on Different Domains.</span>Figure 4 shows that the results of different LLMs on SimpleVQA reveal a clear distinction between closed-source
+              and open-source large vision-language models in terms of different domains. SimpleVQA is split
+              into different subdomains, including “Literature, education & sports (LES)”, “Euro-American History & Culture (EHC)”, “Contemporary Society
+              (CS)”, “Engineering, Technology & Application (ETA)”, “Film”, “Television & Media (FTM)”,
+              “Natural Science (NS)”, “Art (AR)”, “Chinese History & Culture (CHC)”, and “Life (LI)”. Among the closed-source models, Doubao-vision-pro-128k
+              stands out with the highest overall F-score of
+              62.75, excelling in categories like “Correct given
+              attempted” (CGA) and “F-score”, while GPT-4o
+              follows closely with a strong performance. In contrast, open-source models such as InternVL2.5-78B-MPO and Qwen2.5-VL-72B-Instruct show rel-
+              atively lower F-scores, averaging around 47.30,
+              with consistent performance across most categories
+              but lagging behind closed-source models. Overall, closed-source models demonstrate superior accuracy and robustness, while open-source models, though competitive, generally underperform
+              in comparison.
+            </p>
+          </div>
+          
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Further Analysis</h2>
+          <p>
+            Based on SimpleVQA, we conducted a comprehensive evaluation of the mainstream MLLMs, exposing serious factual problems in the model. We
+also conducted an in-depth causal analysis of the existing factual problems from the perspective of MLLMs’ image understanding and text generation
+capabilities, providing a forward-looking direction for the optimization of subsequent models. First,
+we identified the three most robust MLLMs through evaluation. For each Visual Question Answering (VQA) task, if the model’s response is incorrect, we simplify the question into an atomic problem related to content recognition using a prompt.
+This atomic problem corresponds to an atomic fact.
+When provided, it transforms the original question into a purely factual text-based query. If the model still cannot answer the atomic query correctly, we
+attribute the failure to the MLLM’s insufficient understanding of the image. Next, since some of the original questions are atomic questions, we collect
+cases where the atomic questions are different from the original questions and use them to extract a test set, called the Complex Fact Question (CFQ) set,
+to verify whether the performance of the model improves when given atomic facts. In another experiment, we incorporate the answer to the atomic question as a hint into the CFQ query and reassess
+the model’s response. If the model still provides an incorrect answer, we attribute the failure to a lack of background knowledge. The table below shows
+the results of our CFQ experiment.
+In this paper, we refer to the performance of Top 5 SOTA models in the main experiment and select difficult CFQ examples from all samples totaling 559, which we use as the CFQ dataset to
+test the picture comprehension ability and knowledge internalization ability of GPT-4o, Qwen2.5-VL-72B-Instruct and InternVL2.5-78B-MPO. The experimental results are shown in Table 5, there is
+a large mismatch between the model’s picture literacy and knowledge internalization abilities, and the model’s knowledge storage ability is a little better
+compared to picture comprehension, but it still has a lot of room for improvement.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Related Works.</h2>
+
+          
+          <div class="content has-text-justified is-3">
+            <p>
+              <span class="dnerf">Multimodal Benchmarks.</span>
+            </p>
+          </div>
+          <p>
+            Recent vision-language benchmarks have been developed to assess models’ capabilities in integrating visual and
+textual information across various tasks (Wu et al.,2024a,b; Zhang et al., 2024), including OCR, spatial awareness, multimodal information retrieval,
+and reasoning skills. For example, MMBench (Liu et al., 2023) employs multiple-choice tasks in both Chinese and English, covering a wide range of
+domains. MMMU (Yue et al., 2024) focuses on complex vision-language tasks, particularly those requiring advanced multimodal reasoning. MMStar
+(Chen et al., 2024) utilizes multi-task evaluations to test models’ ability to fuse different modalities.
+          </p>
+
+          <div class="content has-text-justified is-3">
+            <p>
+              <span class="dnerf">Factuality Benchmarks.</span>
+            </p>
+          </div>
+          <p>
+            Factuality refers to their ability to generate content that follow facts, including commonsense, world knowledge, and domain-specific information. This capability is typically
+            assessed by comparing model outputs to authoritative sources such as Wikipedia or academic textbooks. Recently, Various benchmarks have been
+developed to evaluate factuality in LLMs (Zhong et al., 2023; Huang et al., 2023; Li et al., 2023a;Srivastava et al., 2023; Yang et al., 2018; Lin et al., 2022; Yang et al., 2024a,b). For example,
+MMLU (Hendrycks et al., 2021) assesses multitask accuracy across 57 diverse tasks. HaluEval (Li et al., 2023b) explores the propensity of
+LLMs to produce hallucinations or false information. SimpleQA (Wei et al., 2024) and Chinese
+SimpleQA (He et al., 2024a) have been proposed to measure the short-form factuality in LLMs.
+          </p>
+          <div class="columns is-centered">
+            <img src="./images/table_5.png" alt="Code Generation Live Evaluation" class="teaser-image" width="60%"
+            height="60%" class="center" />
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Conclusion.</h2>
+          <p>
+            In this paper, we introduce the first Chinese-English visual question-answering benchmark,
+SimpleVQA, designed to evaluate the fact-based quizzing capabilities of existing Multimodal Large
+Language Models (MLLMs). This benchmark encompasses seven key features: Chinese-English
+bilingual support, multi-task and multi-scene adapt ability, high quality, challenging content, static design, and ease of evaluation. Utilizing SimpleVQA, we conducted a comprehensive assessment of 18
+MLLMs, analyzing their performance in fact-based quizzes to highlight the advantages and necessity of
+our benchmark. Future work will focus on enhancing the factual quizzing capabilities of MLLMs and
+expanding SimpleVQA to include multi-language
+support, multi-intelligentsia, and specialized domains such as coding, e-commerce, and encyclopedias for role-playing scenarios. Building on prior
+research in neural network calibration, we developed a novel methodology to calibrate the visual
+comprehension and visual-linguistic information
+alignment abilities of MLLMs, identifying error
+sources by testing key atomic questions derived
+from original factual queries. A notable limitation
+of SimpleVQA is its focus on measuring factuality through short, verifiable answers, leaving the
+correlation between providing concise factual responses and generating lengthy, fact-rich answers
+as an open research question. We hope that the
+SimpleVQA will serve as a valuable tool for assessing factuality and inspire the development of more
+trustworthy and reliable MLLMs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="rounded-box is-centered">
+            Citation<br>
+            @inproceedings{<br>
+              title={SimpleVQA: Multimodal Factuality Evaluation for Multimodal Large Language Models},<br>
+              author={Xianfu Cheng*, Wei Zhang*, Shiwei Zhang*, Jian Yang*†, Xiangyuan Guan, Xianjie Wu, Xiang Li, Ge Zhang, Jiaheng Liu, Yuying Mai, Yutao Zeng, Zhoufutu Wen, Ke Jin, Baorui Wang, Weixiao Zhou, Yunhong Lu, Tongliang Li†, Wenhao Huang, Zhoujun Li},<br>
+              booktitle={},<br>
+              year={2025},<br>
+              url={}
+            }
+          </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+
+</html>

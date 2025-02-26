@@ -1,0 +1,72 @@
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Related Work</h2>
+          <div class="content has-text-justified">
+            <p>
+              <span class="dnerf">Code Large Language Model.</span> Large language
+              models (LLMs) designed for coding tasks have demonstrated exceptional capabilities in code gen-
+              eration, debugging, translation, and other essential
+              functions for modern software engineering (Chen
+              et al., 2021b; Anthropic, 2023; OpenAI, 2023;
+              Fried et al., 2023; Xu et al., 2022; Sun et al.,
+              2024). Numerous in-file benchmarks have been
+              developed to evaluate these capabilities; however, many of them focus on a limited selection
+              of programming languages, such as Python and
+              Java (Zheng et al., 2023b; Austin et al., 2021;
+              Jain et al., 2024). Recent advancements in code
+              LLMs, including models like Code Llama (Roziere
+              et al., 2023), DeepSeek-Coder (Guo et al., 2024a),
+              OpenCoder (Huang et al., 2024), and Qwen2.5-Coder (Hui et al., 2024), have made significant
+              strides in multilingual code generation and debugging tasks. These models have been effectively evaluated using benchmarks such as MultiPL-
+              E (Cassano et al., 2023), McEval (Chai et al., 2024),
+              and MdEval (Liu et al., 2024b).
+            </p>
+            <br />
+            <div class="columns is-centered">
+              <img src="./images/tasks_radar.png" alt="Holistic Evaluation" class="teaser-image" width="44%"
+                height="44%" class="center" />
+            </div>
+          </div>
+
+          <div class="content has-text-justified">
+            <p>
+              <span class="dnerf">Code Benchmarks.</span> Code generation is a basic
+              task for code language models (LLMs), requiring
+              them to interpret natural language descriptions and
+              generate corresponding code snippets that fulfill
+              user requirements (Gu et al., 2024; Lai et al., 2022;
+              Liu et al., 2023; Yu et al., 2024; Li et al., 2024).
+              To thoroughly evaluate the diverse capabilities of
+              LLMs, numerous benchmarks have been proposed,
+              including code translation (Jiao et al., 2023; Yan
+              et al., 2023; Zhu et al., 2022), code retrieval (Huang
+              et al., 2021; Husain et al., 2019; Lu et al., 2021),
+              code completion (Bavarian et al., 2022; Liu et al.,
+              2024a; Zhang et al., 2023), code debugging (Huq
+              et al., 2022; Tian et al., 2024; Liu et al., 2024b),
+              and structured data understanding (Wu et al., 2024;
+              Su et al., 2024). Recent initiatives such as McEval (Chai et al., 2024) have expanded the eval-
+              uative scope to 40 programming languages for
+              multilingual scenarios, while MdEval (Liu et al.,
+              2024b) has developed a multilingual code debugging benchmark encompassing nearly 20 program-
+              ming languages. Nonetheless, many of these studies concentrate on assessing only a single aspect of
+              LLM capabilities, often overlooking the evaluation
+              of LLMs as comprehensive program developers
+              across a variety of real-world coding scenarios. In
+              this work, we propose FullStack Bench to evaluate
+              the capabilities of LLMs across multiple practical
+              code development contexts.
+            </p>
+            <br />
+            <div class="columns is-centered">
+              <img src="./images/tasks_radar.png" alt="Holistic Evaluation" class="teaser-image" width="44%"
+                height="44%" class="center" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>

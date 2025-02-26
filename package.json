@@ -1,0 +1,54 @@
+{
+    "name": "leaderboard",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@ag-grid-community/client-side-row-model": "^32.3.3",
+        "@ag-grid-community/core": "^32.3.3",
+        "@ag-grid-community/react": "^32.3.3",
+        "@ag-grid-enterprise/core": "^32.3.3",
+        "@ag-grid-enterprise/excel-export": "^32.3.3",
+        "@ag-grid-enterprise/menu": "^32.3.3",
+        "@emotion/react": "^11.13.5",
+        "@emotion/styled": "^11.13.5",
+        "@mui/material": "^5.16.8",
+        "ag-grid-community": "^32.3.3",
+        "ag-grid-enterprise": "^32.3.3",
+        "ag-grid-react": "^32.3.3",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "streamlit-component-lib": "^2.0.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build && bash scripts/rename_html.sh",
+        "build:dev": "dotenv -e .env.development react-scripts build && bash scripts/rename_html.sh",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "homepage": ".",
+    "devDependencies": {
+        "@types/node": "^12.0.0",
+        "@types/react": "^18.2.0",
+        "@types/react-dom": "^18.2.0",
+        "dotenv-cli": "^7.4.1",
+        "gh-pages": "^6.1.1",
+        "react-scripts": "^5.0.1",
+        "typescript": "^4.2.0"
+    }
+}
